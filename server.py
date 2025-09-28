@@ -1,8 +1,10 @@
 import socket
 import concurrent.futures
 import os
+from collections import deque
 import sys
-import time
+import json
+from email.utils import formatdate
 import threading
 from urllib.parse import unquote
 
@@ -10,8 +12,8 @@ from urllib.parse import unquote
 interface = "127.0.0.1"
 port = 8080
 resources = "resources"
-client_que = []
-clients = 0
+client_que = deque()
+no_of_clients = 0
 # a lock is needed for maintaining client_que
 lock = threading.Lock() 
 
@@ -20,16 +22,20 @@ def start_server(port, interface, resource_dir, maxPoolSize=10):
     sock.bind((interface, port))
     sock.listen()
     with concurrent.futures.ThreadPoolExecutor(max_workers=maxPoolSize) as executor:
-        conn, addr = sock.accept()
-        no_of_clients+=1
-        executor.submit(handle_client_connection, conn, addr, executor, resource_dir)
-    if clients >= maxPoolSize:
-        print("Thread pool saturated, queing connection")
-        client_que.append((conn, addr))
+        while True:
+            conn, addr = sock.accept()
+            lock.acquire()
+            no_of_clients+=1
+            if no_of_clients >= maxPoolSize:
+                print("Thread pool saturated, queing connection")
+                client_que.append((conn, addr))
+            else:
+                executor.submit(handle_client_connection, conn, addr, executor, resource_dir)
+            lock.release()
 
 
 
-def handle_client_connection(conn, addr, executor, resources_dir):
+def handle_client_connection(conn, addr, executor, resource_dir):
     client_ip, client_port = addr
     print(f"Connection from {client_ip} {client_port}")
     try: 
@@ -58,7 +64,6 @@ def handle_client_connection(conn, addr, executor, resources_dir):
                 conn.sendall(response)
                 print(" --> 505 Version not supported")
             # process the response according to method
-            path = error_or_path
             if method.upper() == "GET":
                 # resolve the path 
                 ok, error_or_path = resolve_path(resource_dir, path)
@@ -71,6 +76,7 @@ def handle_client_connection(conn, addr, executor, resources_dir):
                     conn.sendall(response)
                     print(" --> 404 Not Found")
                     return
+                path = error_or_path
                 try:
                     if path.endswith(".html"):
                         with open(path, "r") as f:
@@ -85,7 +91,7 @@ def handle_client_connection(conn, addr, executor, resources_dir):
                             "Content-Type: application/octet-stream",
                             f'Content-Disposition: attachment; filename="{os.path.basename(path)}"',
                         ]
-                        response = make_response(200, "OK", extra_headers=extra_headers)
+                        response = make_response(200, "OK", data, extra_headers=extra_headers)
                         conn.sendall(response)
                         print(" --> 200 OK")
                 except Exception:
@@ -93,7 +99,7 @@ def handle_client_connection(conn, addr, executor, resources_dir):
             elif method.upper() == "POST":
                 # Check the path
                 if path != "/uploads":
-                    response = make_response(404, "Not Found", error_page("404", "Not found", "Unvalid file path"))
+                    response = make_response(404, "Not Found", error_page("404", "Not found", "Invalid file path"))
                     conn.sendall(response)
                     print(" --> 404 Nof Found")
                     return
@@ -107,21 +113,21 @@ def handle_client_connection(conn, addr, executor, resources_dir):
                         headers[k.lower().strip()] = v.strip()
 
                 # Validate Content-Type (should be application/json)
-                if headers.get("Content-Type", "") != "application/json":
-                    response = make_response(415, "Unsupported Media Type", error_page("415", "Unsupported Media Type", "This media type is not supported")
+                if headers.get("content-type", "") != "application/json":
+                    response = make_response(415, "Unsupported Media Type", error_page("415", "Unsupported Media Type", "This media type is not supported"))
                     conn.sendall(response)
                     print(" --> 415 Unsupported Media Type")
                     return
 
                 # Check Content-Length
-                if "Content-Length" not in headers:
+                if "content-length" not in headers:
                     response = make_response(411, "Content-Length required", error_page("411", "Content-Length Required", "Content-Length not mentioned"))
                     conn.sendall(response)
-                    con.sendall(response)
                     print(" --> 411 Content-Length Required")
                     return
+
                 try:
-                    content_length = int(headers["Content-Length"])
+                    content_length = int(headers["content-length"])
                 except:
                     response = make_response(500, "Internal Server Error", "Internal Server Error")
                     conn.senall(response)
@@ -129,16 +135,51 @@ def handle_client_connection(conn, addr, executor, resources_dir):
                     return
 
                 # Extract the body from the data
-                body = data.split("\r\n\r\n")[1].encode("utf-8")
+                raw_body = raw_data.split("\r\n\r\n")[1]
+                body = raw_body.encode("utf-8") if len(raw_data) > 1 else b""
 
-                # compare Content-Length with the body Length
-                if len(body) < content_length:
-                    response = make_response(400, "Bad Request", error_page("400", "Bad Request", "content and body length are not equal"))
+                # if the data is incomplete, try to recv the rest of the data from the client conn
+                while len(body) < content_length :
+                    body += conn.recv(4096)
+
+                body_str = body.decode("utf-8")
+
+                # Load JSON
+                try:
+                    parsed_json = json.load(body_str)
+                except json.JSONDecodeError:
+                    response = make_response(400, "Bad Request", error_page("400", "Bad Request", "Invalid JSON"))
                     conn.sendall(response)
                     print(" --> 400 Bad Request")
                     return
 
+                # Resolve safe upload path
+                ok, path_or_error = resolve_upload_path(resource_dir)
+                if not ok:
+                    response = make_response(403, "Forbidden",
+                                            error_page("403", "Forbidden", "Forbidden Path"))
+                    conn.sendall(response)
+                    print(" --> 403 Forbidden")
+                    return
 
+                file_path = path_or_error
+
+                # Save JSON to file
+                with open(file_path, "w", encoding="utf-8") as f:
+                    f.write(body_str)
+
+                # Build response
+                response_body = json.dumps({
+                    "status": "success",
+                    "message": "File created successfully",
+                    "filepath": "/uploads/" + os.path.basename(file_path)
+                })
+
+                response = make_response(201, "Created", response_body,
+                                        extra_headers=["Content-Type: application/json"])
+                conn.sendall(response)
+                print(" --> 201 Created")
+                return
 
             else:
                 response = make_response(405, "Method Not Allowed", error_page(""))
@@ -151,20 +192,20 @@ def handle_client_connection(conn, addr, executor, resources_dir):
     finally:
         lock.acquire()
         no_of_clients-=1
-        if not client_que.empty():
-            client = client_que.pop()
+        if client_que:
+            client = client_que.popleft()
             next_conn, next_addr = client
-            executor.submit(handle_client_connection, next_conn, next_addr, executor)
+            executor.submit(handle_client_connection, next_conn, next_addr, executor, resource_dir)
         lock.release()
 
             
 def resolve_path(resource_dir, request_path):
     path = request_path.split('?')[0] # separate path from query
-    path = path.unquote() # remove any special characters if they exist in the path
+    path = unquote(path) # remove any special characters if they exist in the path
     if path == "": # default empty path to /
         path = "/"
     if path == "/": # default / to /index.html page
-        path == "/index.html"
+        path = "/index.html"
     
     # avoid using absolute paths (security risk)
     if path.startswith('http://') or path.startswith('https://'):
@@ -177,7 +218,7 @@ def resolve_path(resource_dir, request_path):
 
     if not candidate_path.startswith(real_prefix):
         return False, "403 Forbidden"
-    return True, "200 Ok"
+    return True, candidate_path
 
 def make_response(status_code, reason, body_html, connection, extra_headers=None):
     if body_html == "":
@@ -189,13 +230,14 @@ def make_response(status_code, reason, body_html, connection, extra_headers=None
     headers = [
         f"HTTP/1.1 {status_code} {reason}",
         "Content-Type: text/html; charset=utf-8",
-        f"Content-Length: [{len(body)}]",
-        f"Date: [{time.gmtime()}]",
+        f"Content-Length: {len(body)}",
+        f"Date: {formatdate(timeval=None, usegmt=True)}",
         "Server: Multi-threaded HTTP Server",
         f"Connection: {connection}"
     ]
     if extra_headers:
-        header_blob = "\r\n".join(headers.extend(extra_headers)) + "\r\n\r\n"
+        headers.extend(extra_headers)
+    header_blob = "\r\n".join(headers) + "\r\n\r\n"
     return header_blob.encode("utf-8") + body
 
 def error_page(status_code, reason, detail):
@@ -222,7 +264,7 @@ if __name__ == "__main__":
         except:
             print(f"Invalid port Number. Using Default {PORT}")
         if len(sys.argv) >= 3:
-            INTERFACE = int(sys.argv[2])
+            INTERFACE = str(sys.argv[2])
         if len(sys.argv) >= 4:
             threadpool_size = int(sys.argv[3])
     
