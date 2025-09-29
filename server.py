@@ -95,10 +95,12 @@ def handle_client_connection(conn, addr, executor, resource_dir):
                 # resolve the path 
                 ok, error_or_path = resolve_path(resource_dir, path)
                 path = error_or_path
+                # check if resolved path correctly or not
                 if not ok:
                     response = make_response(403, "Forbidden", error_page("403", "Forbidden", "Forbidden Path"), "close")
                     conn.sendall(response)
                     print(" --> 403 Forbidden")
+                # check if file or path exists to the given path
                 if not os.path.exists(path) or not os.path.isfile(path):
                     response = make_response(404, "Bad Request", error_page("404", "Bad Request", "Malformed Request"), "close")
                     conn.sendall(response)
@@ -135,9 +137,9 @@ def handle_client_connection(conn, addr, executor, resource_dir):
                     response = make_response(404, "Not Found", error_page("404", "Not Found", "The requested resource was not found."), extra_headers=["Connection: close"])
                     conn.sendall(response)
                     print(" --> 404 Not Found")
-                    break # Use break to exit the loop and close the connection
+                    break 
 
-
+                # validate if the content0type is in json (application/json)
                 if request_headers.get("content-type", "").lower() != "application/json":
                     response = make_response(415, "Unsupported Media Type", error_page("415", "Unsupported Media Type", "Content-Type must be application/json."), extra_headers=["Connection: close"])
                     conn.sendall(response)
@@ -151,7 +153,8 @@ def handle_client_connection(conn, addr, executor, resource_dir):
                     conn.sendall(response)
                     print(" --> 411 Length Required")
                     break
-
+                
+                # try to get content-length, use try catch for debugging
                 try:
                     content_length = int(content_length_str)
                 except ValueError:
@@ -160,16 +163,10 @@ def handle_client_connection(conn, addr, executor, resource_dir):
                     print(" --> 400 Bad Request")
                     break
 
-                # 4. Robustly read the request body
-                header_end_marker = "\r\n\r\n"
-                # Note: raw_data is still a string here from the initial recv().decode()
-                header_end_index = raw_data.find(header_end_marker)
+                # split body from header by using \r\n\r\n --> this is http request response format to separate header from body
+                body_string = raw_data.split("\r\n\r\n")[1]
                 
-                # The body starts 4 characters after the end of the headers
-                body_start_index = header_end_index + len(header_end_marker)
-                initial_body_str = raw_data[body_start_index:]
-                
-                body_bytes = initial_body_str.encode("utf-8")
+                body_bytes = body_string.encode("utf-8")
 
                 # Keep receiving data until the body is complete
                 while len(body_bytes) < content_length:
@@ -182,10 +179,9 @@ def handle_client_connection(conn, addr, executor, resource_dir):
                 
                 # Check if the connection was broken prematurely
                 if len(body_bytes) < content_length:
-                    # Don't send a response, just close the connection
                     break
-
-                # [cite_start]5. Parse the JSON data [cite: 76]
+                # decode the body_bytes
+                # use json.loads method to convert the input data in JSON format to Oject in python. This is called parsing
                 try:
                     body_str = body_bytes.decode("utf-8")
                     parsed_json = json.loads(body_str)
@@ -195,7 +191,7 @@ def handle_client_connection(conn, addr, executor, resource_dir):
                     print(" --> 400 Bad Request (Invalid JSON)")
                     break
 
-                # [cite_start]6. Create the file in the 'uploads' directory [cite: 80]
+                # get the request upload path after verifying it
                 ok, path_or_error = resolve_upload_path(resource_dir)
                 if not ok:
                     response = make_response(403, "Forbidden", error_page("403", "Forbidden", "Cannot create file in the specified location."), extra_headers=["Connection: close"])
@@ -204,11 +200,12 @@ def handle_client_connection(conn, addr, executor, resource_dir):
                     break
 
                 file_path = path_or_error
+                # open file_path in write mode and use json.dump to "dump" the data in the file.
+                # "dump" means to convert python data structure to JSON format and save to file
                 with open(file_path, "w", encoding="utf-8") as f:
-                    # Use json.dump for cleaner writing and indentation
                     json.dump(parsed_json, f, indent=4)
 
-                # [cite_start]7. Send a 201 Created response [cite: 84]
+                # successfully created file message
                 response_body_dict = {
                     "status": "success",
                     "message": "File created successfully",
@@ -218,7 +215,7 @@ def handle_client_connection(conn, addr, executor, resource_dir):
 
                 response = make_response(201, "Created", response_body_json, content_type="application/json; charset=utf-8")
                 conn.sendall(response)
-                print(f" --> 201 Created: {os.path.basename(file_path)}")
+                print(f" --> 201 Created: {os.path.realpath(file_path)}")
 
             else:
                 response = make_response(405, "Method Not Allowed", error_page(""), extra_headers=["Connection: close"])
@@ -259,6 +256,7 @@ def resolve_upload_path(resource_dir):
     return True, candidate_path
     
 def resolve_path(resource_dir, path):
+    # make the default path to index.html
     if path == "":
         path = "/"
     if path == "/":
