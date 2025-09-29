@@ -3,9 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>About Me</title>
+    <style>
+        /* Import modern font */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        /* Reset some default styles */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f0f4f8;
+        }
+
+        /* Header styles */
+        header {
+            background: linear-gradient(135deg, #4a90e2, #50e3c2);
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 3em;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Navigation styles */
+        nav {
+            background-color: #333;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #fff;
+            color: #333;
+        }
+
+        /* Main content styles */
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        main section {
+            margin-bottom: 40px;
+        }
+
+        main h2 {
+            color: #4a90e2;
+            font-size: 2em;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        main h2::after {
+            content: '';
+            width: 50px;
+            height: 3px;
+            background-color: #50e3c2;
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+        }
+
+        main p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            font-size: 0.9em;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            main {
+                padding: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-    
+    <header>
+        <h1>About Me</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="about">
+            <h2>About Me</h2>
+            <p>I'm a simple website created with HTML and CSS. This page provides more details about me. Feel free to customize with your own information!</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My Home Page. All rights reserved.</p>
+    </footer>
 </body>
 </html>

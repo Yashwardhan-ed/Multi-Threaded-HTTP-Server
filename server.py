@@ -58,7 +58,7 @@ def handle_client_connection(conn, addr, executor, resource_dir):
                 conn.sendall(response)
                 print(" --> 400 Bad Request")
                 return
-
+            # extracting header info from the request and storing it in dictionary
             request_headers = {}
             for line in request_lines:
                 if line.strip() == "":
@@ -67,6 +67,7 @@ def handle_client_connection(conn, addr, executor, resource_dir):
                     k, v = line.split(":", 1)
                     request_headers[k.lower().strip()] = v.strip()
 
+            # checking connection status. If connection close, break the loop
             connection_status = request_headers.get("connection", "close").lower()
             if connection_status == "close":
                 print("LOG: Client requested to terminate the connection. Terminating...")
@@ -76,7 +77,8 @@ def handle_client_connection(conn, addr, executor, resource_dir):
                 keep_alive = True
             if not keep_alive:
                 break
-
+            
+            # extract method, path, version from the first line of request and check each varable
             request_line = request_lines[0].strip()
             parts = request_line.split(" ")
             if len(parts) != 3: 
@@ -144,7 +146,7 @@ def handle_client_connection(conn, addr, executor, resource_dir):
                     response = make_response(415, "Unsupported Media Type", error_page("415", "Unsupported Media Type", "Content-Type must be application/json."), extra_headers=["Connection: close"])
                     conn.sendall(response)
                     print(" --> 415 Unsupported Media Type")
-                    break
+                    return
 
                 # 3. Validate the Content-Length header
                 content_length_str = request_headers.get("content-length")
@@ -161,7 +163,7 @@ def handle_client_connection(conn, addr, executor, resource_dir):
                     response = make_response(400, "Bad Request", error_page("400", "Bad Request", "Invalid Content-Length value."), extra_headers=["Connection: close"])
                     conn.sendall(response)
                     print(" --> 400 Bad Request")
-                    break
+                    return
 
                 # split body from header by using \r\n\r\n --> this is http request response format to separate header from body
                 body_string = raw_data.split("\r\n\r\n")[1]
@@ -189,7 +191,7 @@ def handle_client_connection(conn, addr, executor, resource_dir):
                     response = make_response(400, "Bad Request", error_page("400", "Bad Request", "Invalid JSON or UTF-8 decoding error."), extra_headers=["Connection: close"])
                     conn.sendall(response)
                     print(" --> 400 Bad Request (Invalid JSON)")
-                    break
+                    return
 
                 # get the request upload path after verifying it
                 ok, path_or_error = resolve_upload_path(resource_dir)
@@ -197,7 +199,7 @@ def handle_client_connection(conn, addr, executor, resource_dir):
                     response = make_response(403, "Forbidden", error_page("403", "Forbidden", "Cannot create file in the specified location."), extra_headers=["Connection: close"])
                     conn.sendall(response)
                     print(" --> 403 Forbidden")
-                    break
+                    return
 
                 file_path = path_or_error
                 # open file_path in write mode and use json.dump to "dump" the data in the file.
