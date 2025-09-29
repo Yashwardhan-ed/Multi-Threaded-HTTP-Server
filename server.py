@@ -215,7 +215,7 @@ def handle_client_connection(conn, addr, executor, resource_dir):
 
                 response = make_response(201, "Created", response_body_json, content_type="application/json; charset=utf-8")
                 conn.sendall(response)
-                print(f" --> 201 Created: {os.path.realpath(file_path)}")
+                print(f" --> 201 Created: {os.path.basename(file_path)}")
 
             else:
                 response = make_response(405, "Method Not Allowed", error_page(""), extra_headers=["Connection: close"])
