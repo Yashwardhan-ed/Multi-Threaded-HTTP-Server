@@ -22,23 +22,23 @@ The server supports **GET** and **POST** methods, serves static files (HTML, tex
 
 ## 🧰 **Project Structure**
 
-project/
-├── server.py
-├── README.md
-└── resources/
-├── index.html
-├── about.html
-├── contact.html
-├── images/
-│ ├── Meme.png
-│ ├── stateuofliberty.png
-│ ├── bird.jpg
-│ ├── Neutron_Star.jpg
-├── texts/
-│ ├── banana.txt
-│ ├── list_voices.txt
-├── sample_post.json
-└── uploads / # created automatically for POST uploads
+* `project/`
+    * `server.py`
+    * `README.md`
+    * `resources/`
+        * `index.html`
+        * `about.html`
+        * `contact.html`
+        * `images/`
+            * `Meme.png`
+            * `stateuofliberty.png`
+            * `bird.jpg`
+            * `Neutron_Star.jpg`
+        * `texts/`
+            * `banana.txt`
+            * `list_voices.txt`
+        * `sample_post.json`
+        * `uploads/`
 
 ---
 
