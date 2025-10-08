@@ -1,0 +1,986 @@
+Index: 0
+ID: gmw/af
+Name: Afrikaans
+Languages: ['af']
+Gender: Male
+Age: None
+---
+Index: 1
+ID: sem/am
+Name: Amharic
+Languages: ['am']
+Gender: Male
+Age: None
+---
+Index: 2
+ID: roa/an
+Name: Aragonese
+Languages: ['an']
+Gender: Male
+Age: None
+---
+Index: 3
+ID: sem/ar
+Name: Arabic
+Languages: ['ar']
+Gender: Male
+Age: None
+---
+Index: 4
+ID: inc/as
+Name: Assamese
+Languages: ['as']
+Gender: Male
+Age: None
+---
+Index: 5
+ID: trk/az
+Name: Azerbaijani
+Languages: ['az']
+Gender: Male
+Age: None
+---
+Index: 6
+ID: trk/ba
+Name: Bashkir
+Languages: ['ba']
+Gender: Male
+Age: None
+---
+Index: 7
+ID: zle/be
+Name: Belarusian
+Languages: ['be']
+Gender: Male
+Age: None
+---
+Index: 8
+ID: zls/bg
+Name: Bulgarian
+Languages: ['bg']
+Gender: Male
+Age: None
+---
+Index: 9
+ID: inc/bn
+Name: Bengali
+Languages: ['bn']
+Gender: Male
+Age: None
+---
+Index: 10
+ID: inc/bpy
+Name: Bishnupriya Manipuri
+Languages: ['bpy']
+Gender: Male
+Age: None
+---
+Index: 11
+ID: zls/bs
+Name: Bosnian
+Languages: ['bs']
+Gender: Male
+Age: None
+---
+Index: 12
+ID: roa/ca
+Name: Catalan
+Languages: ['ca']
+Gender: Male
+Age: None
+---
+Index: 13
+ID: roa/ca-ba
+Name: Catalan (Balearic)
+Languages: ['ca-ba']
+Gender: Male
+Age: None
+---
+Index: 14
+ID: roa/ca-nw
+Name: Catalan (North-western)
+Languages: ['ca-nw']
+Gender: Male
+Age: None
+---
+Index: 15
+ID: roa/ca-va
+Name: Catalan (Valencian)
+Languages: ['ca-va']
+Gender: Male
+Age: None
+---
+Index: 16
+ID: iro/chr
+Name: Cherokee
+Languages: ['chr-US-Qaaa-x-west']
+Gender: Male
+Age: None
+---
+Index: 17
+ID: sit/cmn
+Name: Chinese (Mandarin, latin as English)
+Languages: ['cmn']
+Gender: Male
+Age: None
+---
+Index: 18
+ID: sit/cmn-latn-pinyin
+Name: Chinese (Mandarin, latin as Pinyin)
+Languages: ['cmn-latn-pinyin']
+Gender: Male
+Age: None
+---
+Index: 19
+ID: zlw/cs
+Name: Czech
+Languages: ['cs']
+Gender: Male
+Age: None
+---
+Index: 20
+ID: trk/cv
+Name: Chuvash
+Languages: ['cv']
+Gender: Male
+Age: None
+---
+Index: 21
+ID: cel/cy
+Name: Welsh
+Languages: ['cy']
+Gender: Male
+Age: None
+---
+Index: 22
+ID: gmq/da
+Name: Danish
+Languages: ['da']
+Gender: Male
+Age: None
+---
+Index: 23
+ID: gmw/de
+Name: German
+Languages: ['de']
+Gender: Male
+Age: None
+---
+Index: 24
+ID: grk/el
+Name: Greek
+Languages: ['el']
+Gender: Male
+Age: None
+---
+Index: 25
+ID: gmw/en-029
+Name: English (Caribbean)
+Languages: ['en-029']
+Gender: Male
+Age: None
+---
+Index: 26
+ID: gmw/en
+Name: English (Great Britain)
+Languages: ['en-gb']
+Gender: Male
+Age: None
+---
+Index: 27
+ID: gmw/en-gb-scotland
+Name: English (Scotland)
+Languages: ['en-gb-scotland']
+Gender: Male
+Age: None
+---
+Index: 28
+ID: gmw/en-gb-x-gbclan
+Name: English (Lancaster)
+Languages: ['en-gb-x-gbclan']
+Gender: Male
+Age: None
+---
+Index: 29
+ID: gmw/en-gb-x-gbcwmd
+Name: English (West Midlands)
+Languages: ['en-gb-x-gbcwmd']
+Gender: Male
+Age: None
+---
+Index: 30
+ID: gmw/en-gb-x-rp
+Name: English (Received Pronunciation)
+Languages: ['en-gb-x-rp']
+Gender: Male
+Age: None
+---
+Index: 31
+ID: gmw/en-shaw
+Name: English (Shavian alphabet)
+Languages: ['en-shaw']
+Gender: Male
+Age: None
+---
+Index: 32
+ID: gmw/en-us
+Name: English (America)
+Languages: ['en-us']
+Gender: Male
+Age: None
+---
+Index: 33
+ID: gmw/en-us-nyc
+Name: English (America, New York City)
+Languages: ['en-us-nyc']
+Gender: Male
+Age: None
+---
+Index: 34
+ID: art/eo
+Name: Esperanto
+Languages: ['eo']
+Gender: Male
+Age: None
+---
+Index: 35
+ID: roa/es
+Name: Spanish (Spain)
+Languages: ['es']
+Gender: Male
+Age: None
+---
+Index: 36
+ID: roa/es-419
+Name: Spanish (Latin America)
+Languages: ['es-419']
+Gender: Male
+Age: None
+---
+Index: 37
+ID: urj/et
+Name: Estonian
+Languages: ['et']
+Gender: Male
+Age: None
+---
+Index: 38
+ID: eu
+Name: Basque
+Languages: ['eu']
+Gender: Male
+Age: None
+---
+Index: 39
+ID: ira/fa
+Name: Persian
+Languages: ['fa']
+Gender: Male
+Age: None
+---
+Index: 40
+ID: ira/fa-latn
+Name: Persian (Pinglish)
+Languages: ['fa-latn']
+Gender: Male
+Age: None
+---
+Index: 41
+ID: urj/fi
+Name: Finnish
+Languages: ['fi']
+Gender: Male
+Age: None
+---
+Index: 42
+ID: gmq/fo
+Name: Faroese
+Languages: ['fo']
+Gender: Male
+Age: None
+---
+Index: 43
+ID: roa/fr-be
+Name: French (Belgium)
+Languages: ['fr-be']
+Gender: Male
+Age: None
+---
+Index: 44
+ID: roa/fr-ch
+Name: French (Switzerland)
+Languages: ['fr-ch']
+Gender: Male
+Age: None
+---
+Index: 45
+ID: roa/fr
+Name: French (France)
+Languages: ['fr-fr']
+Gender: Male
+Age: None
+---
+Index: 46
+ID: cel/ga
+Name: Gaelic (Irish)
+Languages: ['ga']
+Gender: Male
+Age: None
+---
+Index: 47
+ID: cel/gd
+Name: Gaelic (Scottish)
+Languages: ['gd']
+Gender: Male
+Age: None
+---
+Index: 48
+ID: sai/gn
+Name: Guarani
+Languages: ['gn']
+Gender: Male
+Age: None
+---
+Index: 49
+ID: grk/grc
+Name: Greek (Ancient)
+Languages: ['grc']
+Gender: Male
+Age: None
+---
+Index: 50
+ID: inc/gu
+Name: Gujarati
+Languages: ['gu']
+Gender: Male
+Age: None
+---
+Index: 51
+ID: sit/hak
+Name: Hakka Chinese
+Languages: ['hak']
+Gender: Male
+Age: None
+---
+Index: 52
+ID: map/haw
+Name: Hawaiian
+Languages: ['haw']
+Gender: Male
+Age: None
+---
+Index: 53
+ID: sem/he
+Name: Hebrew
+Languages: ['he']
+Gender: Male
+Age: None
+---
+Index: 54
+ID: inc/hi
+Name: Hindi
+Languages: ['hi']
+Gender: Male
+Age: None
+---
+Index: 55
+ID: zls/hr
+Name: Croatian
+Languages: ['hr']
+Gender: Male
+Age: None
+---
+Index: 56
+ID: roa/ht
+Name: Haitian Creole
+Languages: ['ht']
+Gender: Male
+Age: None
+---
+Index: 57
+ID: urj/hu
+Name: Hungarian
+Languages: ['hu']
+Gender: Male
+Age: None
+---
+Index: 58
+ID: ine/hy
+Name: Armenian (East Armenia)
+Languages: ['hy']
+Gender: Male
+Age: None
+---
+Index: 59
+ID: ine/hyw
+Name: Armenian (West Armenia)
+Languages: ['hyw']
+Gender: Male
+Age: None
+---
+Index: 60
+ID: art/ia
+Name: Interlingua
+Languages: ['ia']
+Gender: Male
+Age: None
+---
+Index: 61
+ID: poz/id
+Name: Indonesian
+Languages: ['id']
+Gender: Male
+Age: None
+---
+Index: 62
+ID: art/io
+Name: Ido
+Languages: ['io']
+Gender: Male
+Age: None
+---
+Index: 63
+ID: gmq/is
+Name: Icelandic
+Languages: ['is']
+Gender: Male
+Age: None
+---
+Index: 64
+ID: roa/it
+Name: Italian
+Languages: ['it']
+Gender: Male
+Age: None
+---
+Index: 65
+ID: jpx/ja
+Name: Japanese
+Languages: ['ja']
+Gender: Male
+Age: None
+---
+Index: 66
+ID: art/jbo
+Name: Lojban
+Languages: ['jbo']
+Gender: Male
+Age: None
+---
+Index: 67
+ID: ccs/ka
+Name: Georgian
+Languages: ['ka']
+Gender: Male
+Age: None
+---
+Index: 68
+ID: trk/kaa
+Name: Karakalpak
+Languages: ['kaa']
+Gender: Male
+Age: None
+---
+Index: 69
+ID: trk/kk
+Name: Kazakh
+Languages: ['kk']
+Gender: Male
+Age: None
+---
+Index: 70
+ID: esx/kl
+Name: Greenlandic
+Languages: ['kl']
+Gender: Male
+Age: None
+---
+Index: 71
+ID: dra/kn
+Name: Kannada
+Languages: ['kn']
+Gender: Male
+Age: None
+---
+Index: 72
+ID: ko
+Name: Korean
+Languages: ['ko']
+Gender: Male
+Age: None
+---
+Index: 73
+ID: inc/kok
+Name: Konkani
+Languages: ['kok']
+Gender: Male
+Age: None
+---
+Index: 74
+ID: ira/ku
+Name: Kurdish
+Languages: ['ku']
+Gender: Male
+Age: None
+---
+Index: 75
+ID: trk/ky
+Name: Kyrgyz
+Languages: ['ky']
+Gender: Male
+Age: None
+---
+Index: 76
+ID: itc/la
+Name: Latin
+Languages: ['la']
+Gender: Male
+Age: None
+---
+Index: 77
+ID: gmw/lb
+Name: Luxembourgish
+Languages: ['lb']
+Gender: Male
+Age: None
+---
+Index: 78
+ID: art/lfn
+Name: Lingua Franca Nova
+Languages: ['lfn']
+Gender: Male
+Age: None
+---
+Index: 79
+ID: bat/lt
+Name: Lithuanian
+Languages: ['lt']
+Gender: Male
+Age: None
+---
+Index: 80
+ID: bat/ltg
+Name: Latgalian
+Languages: ['ltg']
+Gender: Male
+Age: None
+---
+Index: 81
+ID: bat/lv
+Name: Latvian
+Languages: ['lv']
+Gender: Male
+Age: None
+---
+Index: 82
+ID: poz/mi
+Name: Māori
+Languages: ['mi']
+Gender: Male
+Age: None
+---
+Index: 83
+ID: zls/mk
+Name: Macedonian
+Languages: ['mk']
+Gender: Male
+Age: None
+---
+Index: 84
+ID: dra/ml
+Name: Malayalam
+Languages: ['ml']
+Gender: Male
+Age: None
+---
+Index: 85
+ID: inc/mr
+Name: Marathi
+Languages: ['mr']
+Gender: Male
+Age: None
+---
+Index: 86
+ID: poz/ms
+Name: Malay
+Languages: ['ms']
+Gender: Male
+Age: None
+---
+Index: 87
+ID: sem/mt
+Name: Maltese
+Languages: ['mt']
+Gender: Male
+Age: None
+---
+Index: 88
+ID: miz/mto
+Name: Totontepec Mixe
+Languages: ['mto']
+Gender: Male
+Age: None
+---
+Index: 89
+ID: sit/my
+Name: Myanmar (Burmese)
+Languages: ['my']
+Gender: Male
+Age: None
+---
+Index: 90
+ID: gmq/nb
+Name: Norwegian Bokmål
+Languages: ['nb']
+Gender: Male
+Age: None
+---
+Index: 91
+ID: azc/nci
+Name: Nahuatl (Classical)
+Languages: ['nci']
+Gender: Male
+Age: None
+---
+Index: 92
+ID: inc/ne
+Name: Nepali
+Languages: ['ne']
+Gender: Male
+Age: None
+---
+Index: 93
+ID: gmw/nl
+Name: Dutch
+Languages: ['nl']
+Gender: Male
+Age: None
+---
+Index: 94
+ID: trk/nog
+Name: Nogai
+Languages: ['nog']
+Gender: Male
+Age: None
+---
+Index: 95
+ID: cus/om
+Name: Oromo
+Languages: ['om']
+Gender: Male
+Age: None
+---
+Index: 96
+ID: inc/or
+Name: Oriya
+Languages: ['or']
+Gender: Male
+Age: None
+---
+Index: 97
+ID: inc/pa
+Name: Punjabi
+Languages: ['pa']
+Gender: Male
+Age: None
+---
+Index: 98
+ID: roa/pap
+Name: Papiamento
+Languages: ['pap']
+Gender: Male
+Age: None
+---
+Index: 99
+ID: art/piqd
+Name: Klingon
+Languages: ['piqd']
+Gender: Male
+Age: None
+---
+Index: 100
+ID: zlw/pl
+Name: Polish
+Languages: ['pl']
+Gender: Male
+Age: None
+---
+Index: 101
+ID: roa/pt
+Name: Portuguese (Portugal)
+Languages: ['pt']
+Gender: Male
+Age: None
+---
+Index: 102
+ID: roa/pt-br
+Name: Portuguese (Brazil)
+Languages: ['pt-br']
+Gender: Male
+Age: None
+---
+Index: 103
+ID: art/py
+Name: Pyash
+Languages: ['py']
+Gender: Male
+Age: None
+---
+Index: 104
+ID: art/qdb
+Name: Lang Belta
+Languages: ['qdb']
+Gender: Male
+Age: None
+---
+Index: 105
+ID: qu
+Name: Quechua
+Languages: ['qu']
+Gender: Male
+Age: None
+---
+Index: 106
+ID: myn/quc
+Name: K'iche'
+Languages: ['quc']
+Gender: Male
+Age: None
+---
+Index: 107
+ID: art/qya
+Name: Quenya
+Languages: ['qya']
+Gender: Male
+Age: None
+---
+Index: 108
+ID: roa/ro
+Name: Romanian
+Languages: ['ro']
+Gender: Male
+Age: None
+---
+Index: 109
+ID: zle/ru
+Name: Russian
+Languages: ['ru']
+Gender: Male
+Age: None
+---
+Index: 110
+ID: zle/ru-cl
+Name: Russian (Classic)
+Languages: ['ru-cl']
+Gender: Male
+Age: None
+---
+Index: 111
+ID: zle/ru-lv
+Name: Russian (Latvia)
+Languages: ['ru-lv']
+Gender: Male
+Age: None
+---
+Index: 112
+ID: inc/sd
+Name: Sindhi
+Languages: ['sd']
+Gender: Male
+Age: None
+---
+Index: 113
+ID: tai/shn
+Name: Shan (Tai Yai)
+Languages: ['shn']
+Gender: Male
+Age: None
+---
+Index: 114
+ID: inc/si
+Name: Sinhala
+Languages: ['si']
+Gender: Male
+Age: None
+---
+Index: 115
+ID: art/sjn
+Name: Sindarin
+Languages: ['sjn']
+Gender: Male
+Age: None
+---
+Index: 116
+ID: zlw/sk
+Name: Slovak
+Languages: ['sk']
+Gender: Male
+Age: None
+---
+Index: 117
+ID: zls/sl
+Name: Slovenian
+Languages: ['sl']
+Gender: Male
+Age: None
+---
+Index: 118
+ID: urj/smj
+Name: Lule Saami
+Languages: ['smj']
+Gender: Male
+Age: None
+---
+Index: 119
+ID: ine/sq
+Name: Albanian
+Languages: ['sq']
+Gender: Male
+Age: None
+---
+Index: 120
+ID: zls/sr
+Name: Serbian
+Languages: ['sr']
+Gender: Male
+Age: None
+---
+Index: 121
+ID: gmq/sv
+Name: Swedish
+Languages: ['sv']
+Gender: Male
+Age: None
+---
+Index: 122
+ID: bnt/sw
+Name: Swahili
+Languages: ['sw']
+Gender: Male
+Age: None
+---
+Index: 123
+ID: dra/ta
+Name: Tamil
+Languages: ['ta']
+Gender: Male
+Age: None
+---
+Index: 124
+ID: dra/te
+Name: Telugu
+Languages: ['te']
+Gender: Male
+Age: None
+---
+Index: 125
+ID: tai/th
+Name: Thai
+Languages: ['th']
+Gender: Male
+Age: None
+---
+Index: 126
+ID: sem/ti
+Name: Tigrinya
+Languages: ['ti']
+Gender: Male
+Age: None
+---
+Index: 127
+ID: trk/tk
+Name: Turkmen
+Languages: ['tk']
+Gender: Male
+Age: None
+---
+Index: 128
+ID: bnt/tn
+Name: Setswana
+Languages: ['tn']
+Gender: Male
+Age: None
+---
+Index: 129
+ID: trk/tr
+Name: Turkish
+Languages: ['tr']
+Gender: Male
+Age: None
+---
+Index: 130
+ID: trk/tt
+Name: Tatar
+Languages: ['tt']
+Gender: Male
+Age: None
+---
+Index: 131
+ID: trk/ug
+Name: Uyghur
+Languages: ['ug']
+Gender: Male
+Age: None
+---
+Index: 132
+ID: zle/uk
+Name: Ukrainian
+Languages: ['uk']
+Gender: Male
+Age: None
+---
+Index: 133
+ID: inc/ur
+Name: Urdu
+Languages: ['ur']
+Gender: Male
+Age: None
+---
+Index: 134
+ID: trk/uz
+Name: Uzbek
+Languages: ['uz']
+Gender: Male
+Age: None
+---
+Index: 135
+ID: aav/vi
+Name: Vietnamese (Northern)
+Languages: ['vi']
+Gender: Male
+Age: None
+---
+Index: 136
+ID: aav/vi-vn-x-central
+Name: Vietnamese (Central)
+Languages: ['vi-vn-x-central']
+Gender: Male
+Age: None
+---
+Index: 137
+ID: aav/vi-vn-x-south
+Name: Vietnamese (Southern)
+Languages: ['vi-vn-x-south']
+Gender: Male
+Age: None
+---
+Index: 138
+ID: art/xex
+Name: xextan-test
+Languages: ['xex']
+Gender: Male
+Age: None
+---
+Index: 139
+ID: sit/yue
+Name: Chinese (Cantonese)
+Languages: ['yue']
+Gender: Male
+Age: None
+---
+Index: 140
+ID: sit/yue-latn-jyutping
+Name: Chinese (Cantonese, latin as Jyutping)
+Languages: ['yue']
+Gender: Male
+Age: None

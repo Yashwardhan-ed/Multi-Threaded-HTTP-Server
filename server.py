@@ -262,7 +262,7 @@ def resolve_path(resource_dir, path):
     if path == "":
         path = "/"
     if path == "/":
-        path = "/index.html"
+        path = "../../index.html"
 
     path = path.lstrip("/") # removing the leading slash
     candidate_path = os.path.join(resource_dir, path) # joining the resource dir path with the requested path
