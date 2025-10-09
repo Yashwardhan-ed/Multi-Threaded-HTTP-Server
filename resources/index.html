@@ -66,6 +66,15 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
+        li {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
         nav ul li a:hover {
             background-color: #fff;
             color: #333;
@@ -156,7 +165,22 @@
     <main>
         <section id="home">
             <h2>Home Section</h2>
-            <p>This is the main home section of the page. You can add your content here. We've updated the design to be more modern with gradients, shadows, and responsive layout.</p>
+            <p>This is the main home section of the page.</p>
+            <h3>Sample Images and Texts Downloads</h3>
+
+            <h4>Images</h4>
+            <li><a href="/bird.jpg">Click here to Download sample_image 1</a></li>
+            <li><a href="/Meme.png">Click here to Download sample_image 2</a></li>
+            <li><a href="/stateueofliberty.png">Click here to Download sample_image 3</a></li>
+            <li><a href="/Neutron_Star.jpg">Click here to Download sample_image 4</a></li>
+
+            <h4>Texts</h4>
+            <li><a href="/banana.txt">Click here to Download sample_text 1</a></li>
+            <li><a href="/list_voices.txt">Click here to Download sample_text 2</a></li>
+
+            <h3>Test Invalid Links</h3>
+            <li style="list-style-type: disc;"><a href="/nothing.txt">404 Not Found</a></li>
+            <li style="list-style-type: disc;"><a href="/../../../../../etc/passwd">403 Forbidden</a></li>
         </section>
     </main>
 

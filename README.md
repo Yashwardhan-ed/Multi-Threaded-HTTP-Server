@@ -29,14 +29,12 @@ The server supports **GET** and **POST** methods, serves static files (HTML, tex
         * `index.html`
         * `about.html`
         * `contact.html`
-        * `images/`
-            * `Meme.png`
-            * `stateuofliberty.png`
-            * `bird.jpg`
-            * `Neutron_Star.jpg`
-        * `texts/`
-            * `banana.txt`
-            * `list_voices.txt`
+        * `Meme.png`
+        * `stateuofliberty.png`
+        * `bird.jpg`
+        * `Neutron_Star.jpg`
+        * `banana.txt`
+        * `list_voices.txt`
         * `sample_post.json`
         * `uploads/`
 

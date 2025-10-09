@@ -102,9 +102,10 @@ def handle_client_connection(conn, addr, executor, resource_dir):
                     response = make_response(403, "Forbidden", error_page("403", "Forbidden", "Forbidden Path"), "close")
                     conn.sendall(response)
                     print(" --> 403 Forbidden")
+                    return
                 # check if file or path exists to the given path
                 if not os.path.exists(path) or not os.path.isfile(path):
-                    response = make_response(404, "Bad Request", error_page("404", "Bad Request", "Malformed Request"), "close")
+                    response = make_response(404, "Bad Request", error_page("404", "Bad Request", "Reequested resource not found"), "close")
                     conn.sendall(response)
                     print(" --> 404 Not Found")
                     return
@@ -259,10 +260,8 @@ def resolve_upload_path(resource_dir):
     
 def resolve_path(resource_dir, path):
     # make the default path to index.html
-    if path == "":
-        path = "/"
-    if path == "/":
-        path = "../../index.html"
+    if path == "" or path == "/":
+        path = "/index.html"
 
     path = path.lstrip("/") # removing the leading slash
     candidate_path = os.path.join(resource_dir, path) # joining the resource dir path with the requested path
