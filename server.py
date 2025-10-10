@@ -27,7 +27,7 @@ def start_server(port, interface, resource_dir, maxPoolSize=10):
         # start accepting client connections
         while True:
             conn, addr = sock.accept()
-            # set timeout for connection
+            # set timeout for each connection
             conn.settimeout(30)
             # acquire a lock for no_of_clients
             lock.acquire()
@@ -40,11 +40,9 @@ def start_server(port, interface, resource_dir, maxPoolSize=10):
                 executor.submit(handle_client_connection, conn, addr, executor, resource_dir)
             lock.release()
 
-
-
 def handle_client_connection(conn, addr, executor, resource_dir):
     client_ip, client_port = addr
-    print(f"Connection from {client_ip} {client_port}")
+    print(f"Connection from {client_ip}:{client_port}")
     try: 
         while True:
             # recieve data and encode it
@@ -96,13 +94,14 @@ def handle_client_connection(conn, addr, executor, resource_dir):
             if method.upper() == "GET":
                 # resolve the path 
                 ok, error_or_path = resolve_path(resource_dir, path)
-                path = error_or_path
                 # check if resolved path correctly or not
                 if not ok:
                     response = make_response(403, "Forbidden", error_page("403", "Forbidden", "Forbidden Path"), "close")
                     conn.sendall(response)
                     print(" --> 403 Forbidden")
                     return
+                else: 
+                    path = error_or_path
                 # check if file or path exists to the given path
                 if not os.path.exists(path) or not os.path.isfile(path):
                     response = make_response(404, "Bad Request", error_page("404", "Bad Request", "Reequested resource not found"), "close")
@@ -299,7 +298,7 @@ def error_page(status_code, reason, detail):
                     <title>{status_code} {reason}</title>
                 </head>
                 <body>
-                    <p>{detail}</p>
+                    <p>{status_code} : {detail}</p>
                 </body>
             </html>
             '''

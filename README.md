@@ -1,11 +1,11 @@
-# 🧭 Multi-Threaded HTTP Server
+# Multi-Threaded HTTP Server
 
 This project implements a simple **multi-threaded HTTP server** in Python.  
 The server supports **GET** and **POST** methods, serves static files (HTML, text, images), and allows uploading JSON data to the server via POST requests.
 
 ---
 
-##  Features
+## Features
 
 - ✅ **GET method** to serve:
   - HTML files
@@ -20,7 +20,7 @@ The server supports **GET** and **POST** methods, serves static files (HTML, tex
 
 ---
 
-##  **Project Structure**
+## **Project Structure**
 
 * `project/`
     * `server.py`
@@ -60,16 +60,17 @@ INTERFACE → (optional) Defaults to 127.0.0.1
 
 THREADPOOL_SIZE → (optional) Defaults to 10
 
- Supported Endpoints
+Supported Endpoints
 GET
 Serve static files from the resources/ folder.
 
 Examples:
-
+---
 bash
 curl http://127.0.0.1:8080/index.html
-curl http://127.0.0.1:8080/images/logo.png --output logo.png
-curl http://127.0.0.1:8080/texts/sample1.txt
+curl http://127.0.0.1:8080/logo.png --output logo.png
+curl http://127.0.0.1:8080/sample1.txt
+---
 POST
 Upload JSON files to the server.
 Target endpoint:
@@ -98,27 +99,27 @@ Uploaded files are stored under:
 
 bash
 resources/uploads/
- Test Files
+Test Files
 The resources/ directory contains a set of test files used to validate the server:
 
- HTML: 3 files (index.html, about.html, contact.html)
+HTML: 3 files (index.html, about.html, contact.html)
 
- Text: 2 files
+Text: 2 files
 
- PNG: 2 files (1 is >1 MB to test large transfers)
+PNG: 2 files (1 is >1 MB to test large transfers)
 
- JPEG: 2 files
+JPEG: 2 files
 
- JSON: Sample JSON for POST testing
+JSON: Sample JSON for POST testing
 
 You can add your own files to resources/ to test more scenarios.
 
- Testing the Server
-GET Requests
+Testing the Server
+✅ GET Requests
 bash
 curl http://127.0.0.1:8080/about.html
 curl http://127.0.0.1:8080/images/large_image.png --output test.png
-POST Requests (JSON Upload)
+✅ POST Requests (JSON Upload)
 bash
 curl -X POST http://127.0.0.1:8080/upload \
      -H "Content-Type: application/json" \
@@ -135,5 +136,5 @@ Key Implementation Details:
 
 5. Responses include proper HTTP headers (Content-Length, Date, Server, Connection, etc.).
 
-6. Upload paths are checked before writing files.
+6. Upload paths are checked and sanitized before writing files.
 ---
