@@ -5,7 +5,7 @@ The server supports **GET** and **POST** methods, serves static files (HTML, tex
 
 ---
 
-## 📌 Features
+##  Features
 
 - ✅ **GET method** to serve:
   - HTML files
@@ -20,7 +20,7 @@ The server supports **GET** and **POST** methods, serves static files (HTML, tex
 
 ---
 
-## 🧰 **Project Structure**
+##  **Project Structure**
 
 * `project/`
     * `server.py`
@@ -60,7 +60,7 @@ INTERFACE → (optional) Defaults to 127.0.0.1
 
 THREADPOOL_SIZE → (optional) Defaults to 10
 
-🌐 Supported Endpoints
+ Supported Endpoints
 GET
 Serve static files from the resources/ folder.
 
@@ -98,48 +98,42 @@ Uploaded files are stored under:
 
 bash
 resources/uploads/
-🧪 Test Files
+ Test Files
 The resources/ directory contains a set of test files used to validate the server:
 
-📄 HTML: 3 files (index.html, about.html, contact.html)
+ HTML: 3 files (index.html, about.html, contact.html)
 
-📝 Text: 2 files
+ Text: 2 files
 
-🖼 PNG: 2 files (1 is >1 MB to test large transfers)
+ PNG: 2 files (1 is >1 MB to test large transfers)
 
-🖼 JPEG: 2 files
+ JPEG: 2 files
 
-🧾 JSON: Sample JSON for POST testing
+ JSON: Sample JSON for POST testing
 
 You can add your own files to resources/ to test more scenarios.
 
-🧪 Testing the Server
-✅ GET Requests
+ Testing the Server
+GET Requests
 bash
 curl http://127.0.0.1:8080/about.html
 curl http://127.0.0.1:8080/images/large_image.png --output test.png
-✅ POST Requests (JSON Upload)
+POST Requests (JSON Upload)
 bash
 curl -X POST http://127.0.0.1:8080/upload \
      -H "Content-Type: application/json" \
      -d '{"user":"Yash","message":"Hello Server"}'
-🧠 Key Implementation Details
-ThreadPoolExecutor manages active client connections.
+Key Implementation Details:
 
-A deque queue temporarily holds excess clients when the pool is full.
+1. ThreadPoolExecutor manages active client connections.
 
-Locks ensure thread-safe updates of shared variables.
+2. A deque queue temporarily holds excess clients when the pool is full.
 
-os.path.realpath is used to validate all resolved paths to prevent directory traversal.
+3. Locks ensure thread-safe updates of shared variables.
 
-Responses include proper HTTP headers (Content-Length, Date, Server, Connection, etc.).
+4. os.path.realpath is used to validate all resolved paths to prevent directory traversal.
 
-Upload paths are checked and sanitized before writing files.
+5. Responses include proper HTTP headers (Content-Length, Date, Server, Connection, etc.).
 
-👤 Author
-Yashwardhan Singh
-B.Sc. Computer Science
-
-📝 License
-This project is for educational purposes and does not include a formal license.
+6. Upload paths are checked before writing files.
 ---
